@@ -34,7 +34,9 @@
         ],
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": ["error"],
-        "semi":"warn"
+        "semi":"warn",
+        "no-console": "off",
+        "quotes": [2, "single", { "avoidEscape": true }] 
     },
     "settings": {
         "import/resolver": {

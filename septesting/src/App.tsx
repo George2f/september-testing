@@ -1,27 +1,52 @@
 import React from 'react';
-import logo from './assets/logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import { Head } from './components';
+import {
+  Error404Screen,
+  HomeScreen,
+  PostScreen,
+  PostsScreen,
+} from './screens';
+import logging from './services/logging';
 
-const App : React.FC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit
-        {' '}
-        <code>src/App.tsx</code>
-        {' '}
-        and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+type AppProps = {
+greeting: string,
+componentName?: string
+};
+
+const defaultProps = {
+  componentName: 'App',
+};
+
+const App : React.FC<AppProps> = ({ greeting, componentName }) => {
+  logging.greeting(greeting, componentName);
+  return (
+    <>
+      <Head greeting={greeting} />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <HomeScreen greeting={greeting} />
+          </Route>
+          <Route path="/posts">
+            <PostsScreen greeting={greeting} />
+          </Route>
+          <Route path="/post/:id">
+            <PostScreen greeting={greeting} />
+          </Route>
+          <Route path="/">
+            <Error404Screen greeting={greeting} />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  );
+};
+
+App.defaultProps = defaultProps;
 
 export default App;
