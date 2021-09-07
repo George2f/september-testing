@@ -1,8 +1,7 @@
-import React from 'react';
-import logging from '../../services/logging';
+import React, { useContext } from 'react';
+import { GreetingContext, greet } from '../../services/greeting';
 
 type ScreenProps = {
-  greeting: string,
   componentName?: string,
   children?: React.ReactNode
 }
@@ -12,8 +11,10 @@ const defaultProps = {
   children: 'undefined',
 };
 
-const Screen : React.FC<ScreenProps> = ({ greeting, componentName, children }) => {
-  logging.greeting(greeting, componentName);
+const Screen : React.FC<ScreenProps> = ({ componentName, children }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
+
   return (
     <div>
       {children}

@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Screen } from '../../components';
 import hooks from '../../hooks';
-import logging from '../../services/logging';
+import { GreetingContext, greet } from '../../services/greeting';
 
 type PostScreenProps = {
-  greeting: string,
   componentName?: string,
 };
 
@@ -13,8 +12,9 @@ const defaultProps = {
   componentName: 'Post Screen',
 };
 
-const PostScreen : React.FC<PostScreenProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
+const PostScreen : React.FC<PostScreenProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
   const { id } = useParams<{id:string}>();
 
   const [post, getPost] = hooks.posts.usePost();
@@ -33,7 +33,7 @@ const PostScreen : React.FC<PostScreenProps> = ({ greeting, componentName }) => 
   }, [post]);
 
   return (
-    <Screen greeting={greeting}>
+    <Screen>
       <h1>
         Post screen
       </h1>

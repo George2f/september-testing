@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import logging from '../../services/logging';
+import { GreetingContext, greet } from '../../services/greeting';
 
 type HeadProps = {
-greeting:string,
-componentName?:string
+  componentName?:string
 };
 
 const defaultProps = {
   componentName: 'Head',
 };
 
-const Head : React.FC<HeadProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
+const Head : React.FC<HeadProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
   return (
     <Helmet />
   );

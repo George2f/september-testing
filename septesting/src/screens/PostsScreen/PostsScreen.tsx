@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Screen } from '../../components';
 import hooks from '../../hooks';
-import logging from '../../services/logging';
+import { greet, GreetingContext } from '../../services/greeting';
 
 type PostsScreenProps = {
-greeting: string,
-componentName?: string
+  componentName?: string
 };
 
 const defaultProps = {
   componentName: 'Posts Screen',
 };
 
-const PostsScreen : React.FC<PostsScreenProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
+const PostsScreen : React.FC<PostsScreenProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
 
   const [posts, getPosts] = hooks.posts.usePosts();
 
@@ -22,7 +22,7 @@ const PostsScreen : React.FC<PostsScreenProps> = ({ greeting, componentName }) =
   }, []);
 
   return (
-    <Screen greeting={greeting}>
+    <Screen>
       Posts screen
       {posts.map((post) => (
         <div key={post.id.toString()}>
