@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { GreetingContext, greet } from '../../services/greeting';
 
-type ScreenProps = {
+type HeaderProps = {
   componentName?: string,
   children?: React.ReactNode
 }
 
 const defaultProps = {
-  componentName: 'Screen',
+  componentName: 'Header',
   children: undefined,
 };
 
-const Screen : React.FC<ScreenProps> = ({ componentName, children }) => {
+const Header : React.FC<HeaderProps> = ({ componentName, children }) => {
   const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
 
@@ -22,6 +22,6 @@ const Screen : React.FC<ScreenProps> = ({ componentName, children }) => {
   );
 };
 
-Screen.defaultProps = defaultProps;
+Header.defaultProps = defaultProps;
 
-export default Screen;
+export default Header;
