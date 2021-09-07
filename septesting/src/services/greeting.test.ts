@@ -1,7 +1,7 @@
-import logging from './logging';
+import { greet } from './greeting';
 
 test('renders learn react link', () => {
   console.log = jest.fn();
-  logging.greeting('message', 'component');
+  greet('message', 'component');
   expect(console.log).toBeCalled();
 });

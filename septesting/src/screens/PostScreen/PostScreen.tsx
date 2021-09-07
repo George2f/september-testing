@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Screen } from '../../components';
-import logging from '../../services/logging';
+import { GreetingContext, greet } from '../../services/greeting';
 
 type PostScreenProps = {
-  greeting: string,
   componentName?: string,
 };
 
@@ -11,10 +10,11 @@ const defaultProps = {
   componentName: 'Post Screen',
 };
 
-const PostScreen : React.FC<PostScreenProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
+const PostScreen : React.FC<PostScreenProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
   return (
-    <Screen greeting={greeting}>Post screen</Screen>
+    <Screen>Post screen</Screen>
   );
 };
 

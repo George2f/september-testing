@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Screen } from '../../components';
-import logging from '../../services/logging';
+import { GreetingContext, greet } from '../../services/greeting';
 
 type HomeScreenProps = {
-  greeting : string,
   componentName?: string
 };
 
@@ -11,9 +10,10 @@ const defaultProps = {
   componentName: 'Home Screen',
 };
 
-const HomeScreen : React.FC<HomeScreenProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
-  return (<Screen greeting={greeting}>Home screen</Screen>);
+const HomeScreen : React.FC<HomeScreenProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
+  return (<Screen>Home screen</Screen>);
 };
 
 HomeScreen.defaultProps = defaultProps;
