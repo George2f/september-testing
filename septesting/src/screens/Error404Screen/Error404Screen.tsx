@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Screen } from '../../components';
-import logging from '../../services/logging';
+import { GreetingContext, greet } from '../../services/greeting';
 
 type Error404ScreenProps = {
-  greeting: string,
   componentName?: string
 };
 
@@ -11,11 +10,11 @@ const defaultProps = {
   componentName: 'Error 404 Screen',
 };
 
-const Error404Screen :React.FC<Error404ScreenProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
-
+const Error404Screen :React.FC<Error404ScreenProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  greet(greeting, componentName);
   return (
-    <Screen greeting={greeting}>
+    <Screen>
       Error 404
     </Screen>
   );

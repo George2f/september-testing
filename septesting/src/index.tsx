@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import reportWebVitals from './services/reportWebVitals';
 import App from './App';
+import { GreetingContext } from './services/greeting';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App greeting="Hello from" />
+    <GreetingContext.Provider value="Hello from">
+      <App />
+    </GreetingContext.Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

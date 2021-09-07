@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,35 +11,35 @@ import {
   PostScreen,
   PostsScreen,
 } from './screens';
-import logging from './services/logging';
+import logging, { GreetingContext } from './services/greeting';
 
 type AppProps = {
-greeting: string,
-componentName?: string
+  componentName?: string
 };
 
 const defaultProps = {
   componentName: 'App',
 };
 
-const App : React.FC<AppProps> = ({ greeting, componentName }) => {
-  logging.greeting(greeting, componentName);
+const App : React.FC<AppProps> = ({ componentName }) => {
+  const greeting = useContext(GreetingContext);
+  logging.greet(greeting, componentName);
   return (
     <>
-      <Head greeting={greeting} />
+      <Head />
       <Router>
         <Switch>
           <Route path="/" exact>
-            <HomeScreen greeting={greeting} />
+            <HomeScreen />
           </Route>
           <Route path="/posts">
-            <PostsScreen greeting={greeting} />
+            <PostsScreen />
           </Route>
           <Route path="/post/:id">
-            <PostScreen greeting={greeting} />
+            <PostScreen />
           </Route>
           <Route path="/">
-            <Error404Screen greeting={greeting} />
+            <Error404Screen />
           </Route>
         </Switch>
       </Router>
