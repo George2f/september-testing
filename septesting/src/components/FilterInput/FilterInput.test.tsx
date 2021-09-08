@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Component from './Screen';
+import Component from './FilterInput';
 
 test('Checks if component logs rendering', () => {
   console.log = jest.fn();
-  render(<Component />);
+  render(<Component onQueryChange={() => 0} query="" onSubmit={() => 0} />);
   expect(console.log).toBeCalled();
 });

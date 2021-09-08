@@ -7,7 +7,7 @@ type HomeScreenProps = {
 };
 
 const defaultProps = {
-  componentName: 'Home Screen',
+  componentName: 'HomeScreen',
 };
 
 const HomeScreen : React.FC<HomeScreenProps> = ({ componentName }) => {

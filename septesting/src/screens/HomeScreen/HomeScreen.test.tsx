@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import HomeScreen from './HomeScreen';
+import Component from './HomeScreen';
 
-test('renders learn react link', () => {
-  render(<HomeScreen greeting="Test greeting" />);
+test('Checks if component logs rendering', () => {
+  console.log = jest.fn();
+  render(<Component />);
+  expect(console.log).toBeCalled();
 });
