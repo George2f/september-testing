@@ -9,7 +9,7 @@ type PostScreenProps = {
 };
 
 const defaultProps = {
-  componentName: 'Post Screen',
+  componentName: 'PostScreen',
 };
 
 const PostScreen : React.FC<PostScreenProps> = ({ componentName }) => {

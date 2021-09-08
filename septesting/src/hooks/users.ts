@@ -4,16 +4,19 @@ import networking from '../services/networking';
 import consts from '../consts';
 import { User } from '../types';
 
-const useUsers = () : [User[], () => void] => {
+const useUsers = () : [ () => Promise<User[]>, User[]] => {
   const [users, setUsers] = useState<User[]>([]);
 
-  const getUsers = () => {
-    networking.getRequest(consts.endpoints.USERS_ENDPOINT)
-      .then((response) => setUsers(response))
+  const getUsers = async () : Promise<User[]> => {
+    return networking.getRequest(consts.endpoints.USERS_ENDPOINT)
+      .then((response) => {
+        setUsers(response);
+        return response;
+      })
       .catch((error) => console.log('Get Users error:', error));
   };
 
-  return [users, getUsers];
+  return [getUsers, users];
 };
 
 const useUser = () : [User|undefined, (id : number) => void] => {
@@ -26,6 +29,11 @@ const useUser = () : [User|undefined, (id : number) => void] => {
   };
 
   return [user, getUser];
+};
+
+export {
+  useUsers,
+  useUser,
 };
 
 export default {

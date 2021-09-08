@@ -7,7 +7,7 @@ type Error404ScreenProps = {
 };
 
 const defaultProps = {
-  componentName: 'Error 404 Screen',
+  componentName: 'Error404Screen',
 };
 
 const Error404Screen :React.FC<Error404ScreenProps> = ({ componentName }) => {

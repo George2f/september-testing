@@ -37,7 +37,8 @@
         "semi":"warn",
         "no-console": "off",
         "quotes": [2, "single", { "avoidEscape": true }],
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "arrow-body-style": "off"
     },
     "settings": {
         "import/resolver": {
