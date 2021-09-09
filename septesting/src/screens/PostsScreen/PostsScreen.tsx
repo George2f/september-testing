@@ -53,7 +53,7 @@ const PostsScreen : React.FC<PostsScreenProps> = ({ componentName }) => {
   }, []);
 
   return (
-    <Screen>
+    <Screen title="Posts | Septesting">
       <Header>
         <FilterInput
           query={query}
@@ -61,8 +61,8 @@ const PostsScreen : React.FC<PostsScreenProps> = ({ componentName }) => {
           onQueryChange={handleQueryChange}
         />
       </Header>
-      <Body>
-        {posts.length === 0 && <div>Loading...</div>}
+      <Body title="Posts">
+        {loading && <div>Loading...</div>}
         {posts.map((post) => (
           <PostComponent
             post={post}
