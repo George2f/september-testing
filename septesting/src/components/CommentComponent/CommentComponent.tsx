@@ -25,7 +25,7 @@ const CommentComponent
     <div className={classNames(styles.container, 'with-shadow')}>
       <div className={styles.titleContainer}>
         <h3 className={styles.username}>
-          {`${comment?.name} - ${comment?.email}`}
+          {`${comment?.email}: ${comment?.name} `}
         </h3>
       </div>
       <div className={styles.bodyContainer}>
