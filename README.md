@@ -33,4 +33,4 @@ There are 2 parts to running this app:
 
 ## Where to next?
 
-Contact us at [Our contact email](mailto:get@2front.co).
+Contact us through [our contact email](mailto:get@2front.co).
