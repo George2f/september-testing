@@ -29,4 +29,4 @@ There are 2 parts to running this app:
 
 1. with your command line or terminal go to septesting folder
 2. run "npm install" if you haven't already
-3. run "npm run test"
+3. run "npm test"
