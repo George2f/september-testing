@@ -1,0 +1,52 @@
+.container{
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 1em;
+  margin-bottom: 1em;
+}
+
+.container:hover{
+
+}
+
+.title{
+  font-size: 1.5em;
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+}
+
+.username{
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.body{
+
+}
+
+.titleContainer{
+  margin: 1em;
+}
+
+.bodyContainer{
+  border-top: 1px solid lightgray;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.footerContainer{
+  display: flex;
+  border-top: 1px solid lightgray;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding-top: 0.9em;
+}
+
+.detailsLink{
+ font-size: 0.8em;
+}

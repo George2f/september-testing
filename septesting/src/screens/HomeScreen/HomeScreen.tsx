@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Screen } from '../../components';
 import { GreetingContext, greet } from '../../services/greeting';
 
@@ -13,6 +14,9 @@ const defaultProps = {
 const HomeScreen : React.FC<HomeScreenProps> = ({ componentName }) => {
   const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
+
+  const history = useHistory();
+  history.push('/posts');
   return (<Screen>Home screen</Screen>);
 };
 

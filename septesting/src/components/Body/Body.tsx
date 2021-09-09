@@ -3,29 +3,27 @@ import classNames from 'classnames';
 import { GreetingContext, greet } from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-type HeaderProps = {
+type BodyProps = {
   componentName?: string,
   children?: React.ReactNode
 }
 
 const defaultProps = {
-  componentName: 'Header',
+  componentName: 'Body',
   children: undefined,
 };
 
-const Header : React.FC<HeaderProps> = ({ componentName, children }) => {
+const Body : React.FC<BodyProps> = ({ componentName, children }) => {
   const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
 
   return (
-    <div className={classNames(styles.container, 'with-shadow')}>
-      <div className={classNames(styles.content, 'centered-section')}>
-        {children}
-      </div>
+    <div className={classNames('centered-section', styles.container)}>
+      {children}
     </div>
   );
 };
 
-Header.defaultProps = defaultProps;
+Body.defaultProps = defaultProps;
 
-export default Header;
+export default Body;

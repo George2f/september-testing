@@ -3,6 +3,9 @@ import Screen from './Screen';
 import Header from './Header';
 import FilterButton from './FilterButton';
 import FilterInput from './FilterInput';
+import PostComponent from './PostComponent';
+import Body from './Body';
+import Link from './Link';
 
 export {
   Head,
@@ -10,4 +13,7 @@ export {
   Header,
   FilterButton,
   FilterInput,
+  PostComponent,
+  Body,
+  Link,
 };

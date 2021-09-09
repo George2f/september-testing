@@ -3,18 +3,20 @@ import { Helmet } from 'react-helmet';
 import { GreetingContext, greet } from '../../services/greeting';
 
 type HeadProps = {
-  componentName?:string
+  componentName?:string,
+  title?: string
 };
 
 const defaultProps = {
   componentName: 'Head',
+  title: 'Septesting',
 };
 
-const Head : React.FC<HeadProps> = ({ componentName }) => {
+const Head : React.FC<HeadProps> = ({ componentName, title }) => {
   const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
   return (
-    <Helmet />
+    <Helmet title={title} />
   );
 };
 

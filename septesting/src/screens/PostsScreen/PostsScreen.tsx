@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FilterInput, Header, Screen } from '../../components';
+import {
+  Body,
+  FilterInput, Header, PostComponent, Screen,
+} from '../../components';
 import hooks from '../../hooks';
 import { greet, GreetingContext } from '../../services/greeting';
 
@@ -59,16 +61,17 @@ const PostsScreen : React.FC<PostsScreenProps> = ({ componentName }) => {
           onQueryChange={handleQueryChange}
         />
       </Header>
-      {loading && <div>Loading...</div>}
-      { posts.map((post) => (
-        <div key={post.id.toString()}>
-          <Link to={`/post/${post.id}`}>
-            <h4>{post.user?.username}</h4>
-            <strong>{post.title}</strong>
-            <p>{post.body}</p>
-          </Link>
-        </div>
-      ))}
+      <Body>
+        {posts.length === 0 && <div>Loading...</div>}
+        {posts.map((post) => (
+          <PostComponent
+            post={post}
+            key={post.id.toString()}
+            link={`/post/${post.id}`}
+            componentName={`post: ${post.id}`}
+          />
+        ))}
+      </Body>
     </Screen>
   );
 };
