@@ -6,6 +6,7 @@ import FilterInput from './FilterInput';
 import PostComponent from './PostComponent';
 import Body from './Body';
 import Link from './Link';
+import CommentComponent from './CommentComponent';
 
 export {
   Head,
@@ -16,4 +17,5 @@ export {
   PostComponent,
   Body,
   Link,
+  CommentComponent,
 };

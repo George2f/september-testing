@@ -1,12 +1,8 @@
 .container{
   border: 1px solid lightgray;
   background-color: white;
-  border-radius: 0em 1em 1em 0em;
+  border-radius: 0em 1em 0em 1em;
   margin-bottom: 1em;
-}
-
-.container:hover{
-
 }
 
 .title{
@@ -20,10 +16,6 @@
   margin: 0;
 }
 
-.body{
-
-}
-
 .titleContainer{
   margin: 1em;
 }
@@ -32,8 +24,6 @@
   border-top: 1px solid lightgray;
   margin-left: 1em;
   margin-right: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
 }
 
 .footerContainer{
