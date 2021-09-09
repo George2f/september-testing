@@ -1,20 +1,21 @@
 $breakpoint-tablet: 768px;
 
 .container{
-  padding-top: 7em;
+  padding-top: 0em;
 }
 
 .content{
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .title{
-    margin-block-start: 0.2em;
-    margin-block-end: 0.2em;
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
 }
 
 @media screen and (min-width: $breakpoint-tablet) {
   .container{
-    padding-top: 4.5em;
+    padding-top: 5em;
   }
 }

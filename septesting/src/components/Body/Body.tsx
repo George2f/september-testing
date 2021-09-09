@@ -6,21 +6,28 @@ import styles from './Styles.module.scss';
 type BodyProps = {
   componentName?: string,
   children?: React.ReactNode,
-  title?: string
+  title?: string,
+  className?:string
 }
 
 const defaultProps = {
   componentName: 'Body',
   children: undefined,
   title: undefined,
+  className: undefined,
 };
 
-const Body : React.FC<BodyProps> = ({ componentName, children, title }) => {
+const Body : React.FC<BodyProps> = ({
+  className,
+  componentName,
+  children,
+  title,
+}) => {
   const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
 
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, className)}>
       <div className={classNames('centered-section', styles.content)}>
         {title ? (
           <h1 className={styles.title}>

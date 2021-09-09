@@ -8,25 +8,28 @@ import styles from './Styles.module.scss';
 type PostComponentProps = {
   componentName?: string,
   post: Post,
-  link: string
+  link?: string
 }
 
 const defaultProps = {
-  componentName: 'Screen',
+  componentName: 'PostComponent',
+  link: undefined,
 };
 
 const PostComponent : React.FC<PostComponentProps> = ({ componentName, post, link }) => {
   const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
 
+  const LinkComponent = link ? Link : 'span';
+
   return (
     <div className={classNames(styles.container, 'with-shadow')}>
       <div className={styles.titleContainer}>
-        <p className={styles.username}>{post.user?.username}</p>
+        <h3 className={styles.username}>{`${post.user?.username} - ${post.user?.email}`}</h3>
         <h2 className={styles.title}>
-          <Link to={link}>
+          <LinkComponent to={link || ''}>
             {post.title}
-          </Link>
+          </LinkComponent>
         </h2>
       </div>
       <div className={styles.bodyContainer}>
@@ -34,11 +37,13 @@ const PostComponent : React.FC<PostComponentProps> = ({ componentName, post, lin
           {post.body}
         </p>
       </div>
-      <div className={styles.footerContainer}>
-        <Link to={link} className={styles.detailsLink}>
-          More details
-        </Link>
-      </div>
+      { link ? (
+        <div className={styles.footerContainer}>
+          <LinkComponent to={link || ''} className={styles.detailsLink}>
+            More details
+          </LinkComponent>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -3,7 +3,7 @@ $breakpoint-tablet: 768px;
 .container{
   background-color: white;
   border-bottom: 1px solid lightgray;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -18,6 +18,10 @@ $breakpoint-tablet: 768px;
 }
 
 @media screen and (min-width: $breakpoint-tablet){
+  .container{
+    position: fixed;
+  }
+
   .content{
     flex-direction: row;
     align-items: center;
