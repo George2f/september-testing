@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Screen } from '../../components';
+import {
+  Body, Header, Link, Screen,
+} from '../../components';
 import hooks from '../../hooks';
 import { GreetingContext, greet } from '../../services/greeting';
 
@@ -34,24 +36,28 @@ const PostScreen : React.FC<PostScreenProps> = ({ componentName }) => {
 
   return (
     <Screen>
-      <h1>
-        Post screen
-      </h1>
-      <h3>
-        {user?.name}
-      </h3>
-      <h2>
-        {post?.title}
-      </h2>
-      <strong>
-        {post?.body}
-      </strong>
-      {comments.map((comment) => (
-        <div key={comment.id.toString()}>
-          <p><strong>{comment.email}</strong></p>
-          <p>{comment?.body}</p>
-        </div>
-      ))}
+      <Header />
+      <Body>
+        <Link to="/posts">{'< Back to posts'}</Link>
+        <h1>
+          {post?.title}
+        </h1>
+        <h3>
+          {user?.name}
+        </h3>
+        <h2>
+          {post?.title}
+        </h2>
+        <strong>
+          {post?.body}
+        </strong>
+        {comments.map((comment) => (
+          <div key={comment.id.toString()}>
+            <p><strong>{comment.email}</strong></p>
+            <p>{comment?.body}</p>
+          </div>
+        ))}
+      </Body>
     </Screen>
   );
 };
