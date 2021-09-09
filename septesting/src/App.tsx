@@ -4,7 +4,6 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import { Head } from './components';
 import {
   Error404Screen,
   HomeScreen,
@@ -25,8 +24,7 @@ const App : React.FC<AppProps> = ({ componentName }) => {
   const greeting = useContext(GreetingContext);
   logging.greet(greeting, componentName);
   return (
-    <>
-      <Head />
+    <div id="main-container">
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -43,7 +41,7 @@ const App : React.FC<AppProps> = ({ componentName }) => {
           </Route>
         </Switch>
       </Router>
-    </>
+    </div>
   );
 };
 

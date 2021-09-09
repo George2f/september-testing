@@ -1,0 +1,27 @@
+.button{
+  text-transform: uppercase;
+  transition: all 0.13s ease-in-out;
+  padding: 1em;
+  background-color: darkblue;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 1em 0em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.button:hover{
+  border-radius: 0em 1em;
+  color: white;
+  background-color: blue;
+}
+
+.button:active{
+  background-color: darkblue;
+  border-radius: 0em 1em;
+}

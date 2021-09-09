@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { FilterButton } from '..';
 import { GreetingContext, greet } from '../../services/greeting';
+import styles from './Styles.module.scss';
 
 type FilterInputProps = {
   componentName?: string,
@@ -28,8 +29,14 @@ const FilterInput : React.FC<FilterInputProps> = ({
   };
 
   return (
-    <form>
-      <input type="text" value={query} onChange={handleQueryChange} />
+    <form className={styles.container}>
+      <input
+        className={styles.input}
+        type="text"
+        value={query}
+        placeholder="Filter by username..."
+        onChange={handleQueryChange}
+      />
       <FilterButton onClick={onSubmit} />
     </form>
   );

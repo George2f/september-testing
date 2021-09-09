@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GreetingContext, greet } from '../../services/greeting';
+import styles from './Styles.module.scss';
 
 type FilterButtonProps = {
   componentName?: string,
@@ -20,7 +21,7 @@ const FilterButton : React.FC<FilterButtonProps> = ({ onClick, componentName }) 
   };
 
   return (
-    <button type="submit" onClick={handleClick}>
+    <button className={styles.button} type="submit" onClick={handleClick}>
       Filter
     </button>
   );
