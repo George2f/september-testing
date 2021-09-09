@@ -25,7 +25,7 @@ const PostComponent : React.FC<PostComponentProps> = ({ componentName, post, lin
   return (
     <div className={classNames(styles.container, 'with-shadow')}>
       <div className={styles.titleContainer}>
-        <p className={styles.username}>{`${post.user?.username} - ${post.user?.email}`}</p>
+        <h3 className={styles.username}>{`${post.user?.username} - ${post.user?.email}`}</h3>
         <h2 className={styles.title}>
           <LinkComponent to={link || ''}>
             {post.title}

@@ -24,12 +24,12 @@ const CommentComponent : React.FC<CommentComponentProps> = ({ componentName, com
     <div className={classNames(styles.container, 'with-shadow')}>
       <div className={styles.titleContainer}>
         <h3 className={styles.username}>
-          {comment.email}
+          {`${comment?.name} - ${comment?.email}`}
         </h3>
       </div>
       <div className={styles.bodyContainer}>
         <p className={styles.body}>
-          {comment.body}
+          {comment?.body}
         </p>
       </div>
     </div>

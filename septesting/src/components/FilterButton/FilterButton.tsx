@@ -8,7 +8,7 @@ type FilterButtonProps = {
 }
 
 const defaultProps = {
-  componentName: 'FilterInput',
+  componentName: 'FilterButton',
 };
 
 const FilterButton : React.FC<FilterButtonProps> = ({ onClick, componentName }) => {

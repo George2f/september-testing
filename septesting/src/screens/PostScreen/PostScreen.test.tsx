@@ -1,23 +1,21 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Component from './HomeScreen';
-
-const mockHistoryPush = jest.fn();
+import { BrowserRouter } from 'react-router-dom';
+import Component from './PostScreen';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: mockHistoryPush,
+  useParams: () => ({
+    id: '1',
   }),
 }));
 
 test('Checks if component logs rendering', () => {
   console.log = jest.fn();
   render(
-    <Router>
+    <BrowserRouter>
       <Component />
-    </Router>,
+    </BrowserRouter>,
   );
   expect(console.log).toBeCalled();
 });
