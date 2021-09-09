@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Head } from '..';
-import { GreetingContext, greet } from '../../services/greeting';
+import { withGreeting } from '../../hoc';
+import { greet, GreetingProps } from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-type ScreenProps = {
+interface ScreenProps extends GreetingProps {
   componentName?: string,
   children?: React.ReactNode,
   title?:string,
@@ -15,8 +16,12 @@ const defaultProps = {
   title: undefined,
 };
 
-const Screen : React.FC<ScreenProps> = ({ componentName, title, children }) => {
-  const greeting = useContext(GreetingContext);
+const Screen : React.FC<ScreenProps> = ({
+  componentName,
+  greeting,
+  title,
+  children,
+}) => {
   greet(greeting, componentName);
 
   return (
@@ -29,4 +34,4 @@ const Screen : React.FC<ScreenProps> = ({ componentName, title, children }) => {
 
 Screen.defaultProps = defaultProps;
 
-export default Screen;
+export default withGreeting(Screen);

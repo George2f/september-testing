@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import { GreetingContext, greet } from '../../services/greeting';
+import {
+  greet,
+  GreetingProps,
+} from '../../services/greeting';
 import styles from './Styles.module.scss';
 import Logo from '../Logo';
+import { withGreeting } from '../../hoc';
 
-type HeaderProps = {
+interface HeaderProps extends GreetingProps {
   componentName?: string,
   children?: React.ReactNode
 }
@@ -14,8 +18,7 @@ const defaultProps = {
   children: undefined,
 };
 
-const Header : React.FC<HeaderProps> = ({ componentName, children }) => {
-  const greeting = useContext(GreetingContext);
+const Header : React.FC<HeaderProps> = ({ componentName, greeting, children }) => {
   greet(greeting, componentName);
 
   return (
@@ -32,4 +35,4 @@ const Header : React.FC<HeaderProps> = ({ componentName, children }) => {
 
 Header.defaultProps = defaultProps;
 
-export default Header;
+export default withGreeting(Header);

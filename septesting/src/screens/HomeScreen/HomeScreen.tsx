@@ -1,25 +1,30 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Screen } from '../../components';
-import { GreetingContext, greet } from '../../services/greeting';
+import { Body, Header, Screen } from '../../components';
+import { withGreeting } from '../../hoc';
+import { greet, GreetingProps } from '../../services/greeting';
 
-type HomeScreenProps = {
+interface HomeScreenProps extends GreetingProps {
   componentName?: string
-};
+}
 
 const defaultProps = {
   componentName: 'HomeScreen',
 };
 
-const HomeScreen : React.FC<HomeScreenProps> = ({ componentName }) => {
-  const greeting = useContext(GreetingContext);
+const HomeScreen : React.FC<HomeScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
 
   const history = useHistory();
   history.push('/posts');
-  return (<Screen>Home screen</Screen>);
+  return (
+    <Screen title="Septesting">
+      <Header />
+      <Body title="Welcome home" />
+    </Screen>
+  );
 };
 
 HomeScreen.defaultProps = defaultProps;
 
-export default HomeScreen;
+export default withGreeting(HomeScreen);

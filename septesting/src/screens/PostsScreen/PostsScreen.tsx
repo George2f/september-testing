@@ -1,14 +1,15 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Body,
   FilterInput, Header, PostComponent, Screen,
 } from '../../components';
+import { withGreeting } from '../../hoc';
 import hooks from '../../hooks';
-import { greet, GreetingContext } from '../../services/greeting';
+import { greet, GreetingProps } from '../../services/greeting';
 
-type PostsScreenProps = {
+interface PostsScreenProps extends GreetingProps {
   componentName?: string
-};
+}
 
 const defaultProps = {
   componentName: 'PostsScreen',
@@ -16,8 +17,7 @@ const defaultProps = {
 
 let filterDelayTimer : NodeJS.Timeout;
 
-const PostsScreen : React.FC<PostsScreenProps> = ({ componentName }) => {
-  const greeting = useContext(GreetingContext);
+const PostsScreen : React.FC<PostsScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -78,4 +78,4 @@ const PostsScreen : React.FC<PostsScreenProps> = ({ componentName }) => {
 
 PostsScreen.defaultProps = defaultProps;
 
-export default PostsScreen;
+export default withGreeting(PostsScreen);

@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { GreetingContext, greet } from '../../services/greeting';
+import React from 'react';
+import { withGreeting } from '../../hoc';
+import { greet, GreetingProps } from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-type FilterButtonProps = {
+interface FilterButtonProps extends GreetingProps {
   componentName?: string,
   onClick: () => void
 }
@@ -11,8 +12,7 @@ const defaultProps = {
   componentName: 'FilterButton',
 };
 
-const FilterButton : React.FC<FilterButtonProps> = ({ onClick, componentName }) => {
-  const greeting = useContext(GreetingContext);
+const FilterButton : React.FC<FilterButtonProps> = ({ onClick, greeting, componentName }) => {
   greet(greeting, componentName);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,4 +29,4 @@ const FilterButton : React.FC<FilterButtonProps> = ({ onClick, componentName }) 
 
 FilterButton.defaultProps = defaultProps;
 
-export default FilterButton;
+export default withGreeting(FilterButton);
