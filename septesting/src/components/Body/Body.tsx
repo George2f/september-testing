@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import { GreetingContext, greet } from '../../services/greeting';
+import {
+  greet,
+  GreetingProps,
+} from '../../services/greeting';
 import styles from './Styles.module.scss';
+import { withGreeting } from '../../hoc';
 
-type BodyProps = {
+interface BodyProps extends GreetingProps {
   componentName?: string,
   children?: React.ReactNode,
   title?: string,
-  className?:string
+  className?:string,
 }
 
 const defaultProps = {
@@ -22,8 +26,8 @@ const Body : React.FC<BodyProps> = ({
   componentName,
   children,
   title,
+  greeting,
 }) => {
-  const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
 
   return (
@@ -42,4 +46,4 @@ const Body : React.FC<BodyProps> = ({
 
 Body.defaultProps = defaultProps;
 
-export default Body;
+export default withGreeting(Body);

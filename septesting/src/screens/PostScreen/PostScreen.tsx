@@ -1,6 +1,5 @@
 import React, {
   useEffect,
-  useContext,
 } from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -11,23 +10,23 @@ import {
   PostComponent,
   Screen,
 } from '../../components';
+import { withGreeting } from '../../hoc';
 import hooks from '../../hooks';
 import {
-  GreetingContext,
   greet,
+  GreetingProps,
 } from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-type PostScreenProps = {
+interface PostScreenProps extends GreetingProps {
   componentName?: string,
-};
+}
 
 const defaultProps = {
   componentName: 'PostScreen',
 };
 
-const PostScreen : React.FC<PostScreenProps> = ({ componentName }) => {
-  const greeting = useContext(GreetingContext);
+const PostScreen : React.FC<PostScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
   const { id } = useParams<{id:string}>();
 
@@ -67,4 +66,4 @@ const PostScreen : React.FC<PostScreenProps> = ({ componentName }) => {
 
 PostScreen.defaultProps = defaultProps;
 
-export default PostScreen;
+export default withGreeting(PostScreen);

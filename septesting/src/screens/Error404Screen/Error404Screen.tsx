@@ -1,25 +1,38 @@
-import React, { useContext } from 'react';
-import { Screen } from '../../components';
-import { GreetingContext, greet } from '../../services/greeting';
+import React from 'react';
+import {
+  Body,
+  Header,
+  Link,
+  Screen,
+} from '../../components';
+import { withGreeting } from '../../hoc';
+import {
+  greet,
+  GreetingProps,
+} from '../../services/greeting';
 
-type Error404ScreenProps = {
+interface Error404ScreenProps extends GreetingProps {
   componentName?: string
-};
+}
 
 const defaultProps = {
   componentName: 'Error404Screen',
 };
 
-const Error404Screen :React.FC<Error404ScreenProps> = ({ componentName }) => {
-  const greeting = useContext(GreetingContext);
+const Error404Screen :React.FC<Error404ScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
   return (
-    <Screen>
-      Error 404
+    <Screen title="Page not found | Septesting">
+      <Header />
+      <Body title="Error 404">
+        <Link to="/posts">
+          {'< Back to posts'}
+        </Link>
+      </Body>
     </Screen>
   );
 };
 
 Error404Screen.defaultProps = defaultProps;
 
-export default Error404Screen;
+export default withGreeting(Error404Screen);

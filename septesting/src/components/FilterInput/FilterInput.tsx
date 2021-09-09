@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FilterButton } from '..';
-import { GreetingContext, greet } from '../../services/greeting';
+import { withGreeting } from '../../hoc';
+import {
+  greet,
+  GreetingProps,
+} from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-type FilterInputProps = {
+interface FilterInputProps extends GreetingProps {
   componentName?: string,
   query: string,
   onQueryChange: (query: string) => void,
@@ -18,9 +22,9 @@ const FilterInput : React.FC<FilterInputProps> = ({
   query,
   onQueryChange,
   onSubmit,
+  greeting,
   componentName,
 }) => {
-  const greeting = useContext(GreetingContext);
   greet(greeting, componentName);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,4 +48,4 @@ const FilterInput : React.FC<FilterInputProps> = ({
 
 FilterInput.defaultProps = defaultProps;
 
-export default FilterInput;
+export default withGreeting(FilterInput);

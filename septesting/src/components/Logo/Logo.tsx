@@ -1,8 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { GreetingContext, greet } from '../../services/greeting';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+import { withGreeting } from '../../hoc';
+import {
+  greet,
+  GreetingProps,
+} from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-type LogoProps = {
+interface LogoProps extends GreetingProps {
   componentName?: string,
 }
 
@@ -19,8 +26,7 @@ const subtitles = [
   '21st night of September...',
 ];
 
-const Logo : React.FC<LogoProps> = ({ componentName }) => {
-  const greeting = useContext(GreetingContext);
+const Logo : React.FC<LogoProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
   const [subtitle, setSubtitle] = useState('');
 
@@ -35,13 +41,21 @@ const Logo : React.FC<LogoProps> = ({ componentName }) => {
   };
 
   return (
-    <button className={styles.container} type="button" onClick={handleClick}>
-      <span className={styles.subtitle}>{subtitle}</span>
-      <p className={styles.title}>SEPTESTING</p>
+    <button
+      className={styles.container}
+      type="button"
+      onClick={handleClick}
+    >
+      <span className={styles.subtitle}>
+        {subtitle}
+      </span>
+      <p className={styles.title}>
+        SEPTESTING
+      </p>
     </button>
   );
 };
 
 Logo.defaultProps = defaultProps;
 
-export default Logo;
+export default withGreeting(Logo);

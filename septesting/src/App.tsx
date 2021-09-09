@@ -1,27 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import { withGreeting } from './hoc';
 import {
   Error404Screen,
   HomeScreen,
   PostScreen,
   PostsScreen,
 } from './screens';
-import logging, { GreetingContext } from './services/greeting';
+import logging, { GreetingProps } from './services/greeting';
 
-type AppProps = {
+interface AppProps extends GreetingProps {
   componentName?: string
-};
+}
 
 const defaultProps = {
   componentName: 'App',
 };
 
-const App : React.FC<AppProps> = ({ componentName }) => {
-  const greeting = useContext(GreetingContext);
+const App : React.FC<AppProps> = ({ componentName, greeting }) => {
   logging.greet(greeting, componentName);
   return (
     <div id="main-container">
@@ -47,4 +47,4 @@ const App : React.FC<AppProps> = ({ componentName }) => {
 
 App.defaultProps = defaultProps;
 
-export default App;
+export default withGreeting(App);

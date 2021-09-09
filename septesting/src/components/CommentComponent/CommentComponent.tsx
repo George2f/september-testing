@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import {
-  GreetingContext,
   greet,
+  GreetingProps,
 } from '../../services/greeting';
 import { Comment } from '../../types';
 import styles from './Styles.module.scss';
+import { withGreeting } from '../../hoc';
 
-type CommentComponentProps = {
+interface CommentComponentProps extends GreetingProps {
   componentName?: string,
   comment: Comment,
 }
@@ -16,8 +17,8 @@ const defaultProps = {
   componentName: 'CommentComponent',
 };
 
-const CommentComponent : React.FC<CommentComponentProps> = ({ componentName, comment }) => {
-  const greeting = useContext(GreetingContext);
+const CommentComponent
+: React.FC<CommentComponentProps> = ({ componentName, greeting, comment }) => {
   greet(greeting, `${componentName}: ${comment.id}`);
 
   return (
@@ -38,4 +39,4 @@ const CommentComponent : React.FC<CommentComponentProps> = ({ componentName, com
 
 CommentComponent.defaultProps = defaultProps;
 
-export default CommentComponent;
+export default withGreeting(CommentComponent);

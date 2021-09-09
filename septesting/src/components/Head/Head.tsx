@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import { GreetingContext, greet } from '../../services/greeting';
+import { withGreeting } from '../../hoc';
+import { greet, GreetingProps } from '../../services/greeting';
 
-type HeadProps = {
+interface HeadProps extends GreetingProps {
   componentName?:string,
   title?: string
-};
+}
 
 const defaultProps = {
   componentName: 'Head',
   title: 'Septesting',
 };
 
-const Head : React.FC<HeadProps> = ({ componentName, title }) => {
-  const greeting = useContext(GreetingContext);
+const Head : React.FC<HeadProps> = ({ componentName, title, greeting }) => {
   greet(greeting, componentName);
   return (
     <Helmet title={title} />
@@ -22,4 +22,4 @@ const Head : React.FC<HeadProps> = ({ componentName, title }) => {
 
 Head.defaultProps = defaultProps;
 
-export default Head;
+export default withGreeting(Head);
