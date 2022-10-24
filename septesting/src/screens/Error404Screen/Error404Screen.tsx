@@ -1,11 +1,9 @@
-import React from 'react';
-import {
-  Body,
-  Header,
-  Link,
-  Screen,
-} from '../../components';
-import { withGreeting } from '../../hoc';
+import { FC } from 'react';
+import Body from '../../components/Body';
+import Header from '../../components/Header';
+import Link from '../../components/Link';
+import Screen from '../../components/Screen';
+import withGreeting from '../../hoc/withGreeting';
 import {
   greet,
   GreetingProps,
@@ -19,7 +17,7 @@ const defaultProps = {
   componentName: 'Error404Screen',
 };
 
-const Error404Screen :React.FC<Error404ScreenProps> = ({ componentName, greeting }) => {
+const Error404Screen : FC<Error404ScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
   return (
     <Screen title="Page not found | Septesting">

@@ -1,5 +1,5 @@
-import React from 'react';
-import { withGreeting } from '../../hoc';
+import { FC } from 'react';
+import withGreeting from '../../hoc/withGreeting';
 import { greet, GreetingProps } from '../../services/greeting';
 import styles from './Styles.module.scss';
 
@@ -12,7 +12,7 @@ const defaultProps = {
   componentName: 'FilterButton',
 };
 
-const FilterButton : React.FC<FilterButtonProps> = ({ onClick, greeting, componentName }) => {
+const FilterButton : FC<FilterButtonProps> = ({ onClick, greeting, componentName }) => {
   greet(greeting, componentName);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

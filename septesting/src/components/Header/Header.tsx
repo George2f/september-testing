@@ -1,12 +1,12 @@
-import React from 'react';
 import classNames from 'classnames';
+import { FC } from 'react';
 import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
 import styles from './Styles.module.scss';
 import Logo from '../Logo';
-import { withGreeting } from '../../hoc';
+import withGreeting from '../../hoc/withGreeting';
 
 interface HeaderProps extends GreetingProps {
   componentName?: string,
@@ -18,7 +18,7 @@ const defaultProps = {
   children: undefined,
 };
 
-const Header : React.FC<HeaderProps> = ({ componentName, greeting, children }) => {
+const Header : FC<HeaderProps> = ({ componentName, greeting, children }) => {
   greet(greeting, componentName);
 
   return (

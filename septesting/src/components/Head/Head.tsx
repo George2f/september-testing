@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 import { Helmet } from 'react-helmet';
-import { withGreeting } from '../../hoc';
+import withGreeting from '../../hoc/withGreeting';
 import { greet, GreetingProps } from '../../services/greeting';
 
 interface HeadProps extends GreetingProps {
@@ -13,7 +13,7 @@ const defaultProps = {
   title: 'Septesting',
 };
 
-const Head : React.FC<HeadProps> = ({ componentName, title, greeting }) => {
+const Head : FC<HeadProps> = ({ componentName, title, greeting }) => {
   greet(greeting, componentName);
   return (
     <Helmet title={title} />

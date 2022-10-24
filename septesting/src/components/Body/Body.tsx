@@ -1,11 +1,11 @@
-import React from 'react';
 import classNames from 'classnames';
+import { FC } from 'react';
+import withGreeting from '../../hoc/withGreeting';
 import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
 import styles from './Styles.module.scss';
-import { withGreeting } from '../../hoc';
 
 interface BodyProps extends GreetingProps {
   componentName?: string,
@@ -21,7 +21,7 @@ const defaultProps = {
   className: undefined,
 };
 
-const Body : React.FC<BodyProps> = ({
+const Body : FC<BodyProps> = ({
   className,
   componentName,
   children,

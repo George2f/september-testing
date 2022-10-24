@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Body,
-  FilterInput, Header, PostComponent, Screen,
-} from '../../components';
-import { withGreeting } from '../../hoc';
+import { FC, useEffect, useState } from 'react';
+import Body from '../../components/Body';
+import FilterInput from '../../components/FilterInput';
+import Header from '../../components/Header';
+import PostComponent from '../../components/PostComponent';
+import Screen from '../../components/Screen';
+import withGreeting from '../../hoc/withGreeting';
 import hooks from '../../hooks';
 import { greet, GreetingProps } from '../../services/greeting';
 
@@ -17,7 +18,7 @@ const defaultProps = {
 
 let filterDelayTimer : NodeJS.Timeout;
 
-const PostsScreen : React.FC<PostsScreenProps> = ({ componentName, greeting }) => {
+const PostsScreen : FC<PostsScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -67,7 +68,7 @@ const PostsScreen : React.FC<PostsScreenProps> = ({ componentName, greeting }) =
           <PostComponent
             post={post}
             key={post.id.toString()}
-            link={`/post/${post.id}`}
+            link={`/posts/${post.id}`}
             componentName={`post: ${post.id}`}
           />
         ))}

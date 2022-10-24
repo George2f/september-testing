@@ -1,12 +1,12 @@
-import React from 'react';
 import classNames from 'classnames';
+import { FC } from 'react';
+import withGreeting from '../../hoc/withGreeting';
 import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
 import { Comment } from '../../types';
 import styles from './Styles.module.scss';
-import { withGreeting } from '../../hoc';
 
 interface CommentComponentProps extends GreetingProps {
   componentName?: string,
@@ -18,7 +18,7 @@ const defaultProps = {
 };
 
 const CommentComponent
-: React.FC<CommentComponentProps> = ({ componentName, greeting, comment }) => {
+: FC<CommentComponentProps> = ({ componentName, greeting, comment }) => {
   greet(greeting, `${componentName}: ${comment.id}`);
 
   return (

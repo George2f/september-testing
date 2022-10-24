@@ -1,45 +1,37 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
+  Navigate,
   Route,
+  Routes,
 } from 'react-router-dom';
-import { withGreeting } from './hoc';
+import withGreeting from './hoc/withGreeting';
 import {
   Error404Screen,
-  HomeScreen,
   PostScreen,
   PostsScreen,
 } from './screens';
 import logging, { GreetingProps } from './services/greeting';
 
 interface AppProps extends GreetingProps {
-  componentName?: string
+  componentName?: string,
+  router: ({ children }: {children: ReactNode}) => JSX.Element
 }
 
 const defaultProps = {
   componentName: 'App',
 };
 
-const App : React.FC<AppProps> = ({ componentName, greeting }) => {
+const App : FC<AppProps> = ({ componentName, greeting, router: Router }) => {
   logging.greet(greeting, componentName);
   return (
     <div id="main-container">
       <Router>
-        <Switch>
-          <Route path="/" exact>
-            <HomeScreen />
-          </Route>
-          <Route path="/posts">
-            <PostsScreen />
-          </Route>
-          <Route path="/post/:id">
-            <PostScreen />
-          </Route>
-          <Route path="/">
-            <Error404Screen />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Navigate to="posts" />} />
+          <Route path="posts" element={<PostsScreen />} />
+          <Route path="posts/:id" element={<PostScreen />} />
+          <Route path="*" element={<Error404Screen />} />
+        </Routes>
       </Router>
     </div>
   );

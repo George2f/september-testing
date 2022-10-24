@@ -5,7 +5,7 @@ import networking from '../services/networking';
 import { Post, User } from '../types';
 import { useUsers } from './users';
 
-const filterPosts = (filter = '', nonFiltered: Post[]) : Post[] => {
+const filterPosts = (filter = '', nonFiltered: Post[] = []) : Post[] => {
   if (filter.length === 0) {
     return nonFiltered;
   }
@@ -41,7 +41,7 @@ const usePosts = () : [Post[], (filter?: string, callback?: () =>void) => void] 
   const [getUsers] = useUsers();
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
 
-  const getPosts = (filter = '', callback?: () =>void) => {
+  const getPosts = (filter = '', callback: () =>void = () => null) => {
     if (posts.length > 0) {
       setFilteredPosts(filterPosts(filter, posts));
       return callback?.();

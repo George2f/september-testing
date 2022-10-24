@@ -1,12 +1,12 @@
-import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import classNames from 'classnames';
+import { FC } from 'react';
 import styles from './Styles.module.scss';
 import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
-import { withGreeting } from '../../hoc';
+import withGreeting from '../../hoc/withGreeting';
 
 interface StyledLinkProps extends GreetingProps{
   className?: string|undefined,
@@ -21,7 +21,7 @@ const defaultProps = {
   componentName: 'Link',
 };
 
-const Link : React.FC<StyledLinkProps> = ({
+const Link : FC<StyledLinkProps> = ({
   className,
   to,
   children,
