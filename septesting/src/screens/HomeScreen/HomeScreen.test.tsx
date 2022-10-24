@@ -1,23 +1,20 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Component from './HomeScreen';
 
 const mockHistoryPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
+  useNavigate: () => (mockHistoryPush),
 }));
 
 test('Checks if component logs rendering', () => {
   console.log = jest.fn();
   render(
-    <Router>
+    <MemoryRouter>
       <Component />
-    </Router>,
+    </MemoryRouter>,
   );
   expect(console.log).toBeCalled();
 });

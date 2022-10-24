@@ -18,9 +18,12 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "jest"
     ],
     "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react/function-component-definition": "off",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
@@ -37,8 +40,9 @@
         "semi":"warn",
         "no-console": "off",
         "quotes": [2, "single", { "avoidEscape": true }],
-        "import/prefer-default-export": "off",
-        "arrow-body-style": "off"
+        "import/prefer-default-export": "error",
+        "arrow-body-style": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     },
     "settings": {
         "import/resolver": {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import classNames from 'classnames';
 import Link from '../Link';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../services/greeting';
 import { Post } from '../../types';
 import styles from './Styles.module.scss';
-import { withGreeting } from '../../hoc';
+import withGreeting from '../../hoc/withGreeting';
 
 interface PostComponentProps extends GreetingProps {
   componentName?: string,
@@ -20,7 +20,7 @@ const defaultProps = {
   link: undefined,
 };
 
-const PostComponent : React.FC<PostComponentProps> = ({
+const PostComponent : FC<PostComponentProps> = ({
   componentName,
   post,
   greeting,

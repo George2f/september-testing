@@ -1,8 +1,8 @@
 export interface GreetingProps {
-  greeting: string
+  greeting?: string
 }
 
-const greet = (message: string, component = 'No name') : void => {
+const greet = (message = 'No greeting,', component = 'No name') : void => {
   console.log(`${message} ${component}`);
 };
 

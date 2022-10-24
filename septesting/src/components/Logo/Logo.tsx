@@ -1,8 +1,9 @@
-import React, {
+import {
+  FC,
   useEffect,
   useState,
 } from 'react';
-import { withGreeting } from '../../hoc';
+import withGreeting from '../../hoc/withGreeting';
 import {
   greet,
   GreetingProps,
@@ -26,7 +27,7 @@ const subtitles = [
   '21st night of September...',
 ];
 
-const Logo : React.FC<LogoProps> = ({ componentName, greeting }) => {
+const Logo : FC<LogoProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
   const [subtitle, setSubtitle] = useState('');
 

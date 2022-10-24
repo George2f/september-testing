@@ -1,11 +1,11 @@
-import React from 'react';
-import { FilterButton } from '..';
-import { withGreeting } from '../../hoc';
+import { FC } from 'react';
+import FilterButton from '../FilterButton';
 import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
 import styles from './Styles.module.scss';
+import withGreeting from '../../hoc/withGreeting';
 
 interface FilterInputProps extends GreetingProps {
   componentName?: string,
@@ -18,7 +18,7 @@ const defaultProps = {
   componentName: 'FilterInput',
 };
 
-const FilterInput : React.FC<FilterInputProps> = ({
+const FilterInput : FC<FilterInputProps> = ({
   query,
   onQueryChange,
   onSubmit,

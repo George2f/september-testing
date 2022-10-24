@@ -1,7 +1,7 @@
-import React from 'react';
-import { Head } from '..';
-import { withGreeting } from '../../hoc';
+import { FC } from 'react';
+import withGreeting from '../../hoc/withGreeting';
 import { greet, GreetingProps } from '../../services/greeting';
+import Head from '../Head';
 import styles from './Styles.module.scss';
 
 interface ScreenProps extends GreetingProps {
@@ -16,7 +16,7 @@ const defaultProps = {
   title: undefined,
 };
 
-const Screen : React.FC<ScreenProps> = ({
+const Screen : FC<ScreenProps> = ({
   componentName,
   greeting,
   title,

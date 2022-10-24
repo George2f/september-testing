@@ -1,16 +1,15 @@
-import React, {
+import {
+  FC,
   useEffect,
 } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Body,
-  CommentComponent,
-  Header,
-  Link,
-  PostComponent,
-  Screen,
-} from '../../components';
-import { withGreeting } from '../../hoc';
+import Body from '../../components/Body';
+import CommentComponent from '../../components/CommentComponent';
+import Header from '../../components/Header';
+import Link from '../../components/Link';
+import PostComponent from '../../components/PostComponent';
+import Screen from '../../components/Screen';
+import withGreeting from '../../hoc/withGreeting';
 import hooks from '../../hooks';
 import {
   greet,
@@ -26,7 +25,7 @@ const defaultProps = {
   componentName: 'PostScreen',
 };
 
-const PostScreen : React.FC<PostScreenProps> = ({ componentName, greeting }) => {
+const PostScreen : FC<PostScreenProps> = ({ componentName, greeting }) => {
   greet(greeting, componentName);
   const { id } = useParams<{id:string}>();
 
@@ -35,8 +34,8 @@ const PostScreen : React.FC<PostScreenProps> = ({ componentName, greeting }) => 
   const [user, getUser] = hooks.users.useUser();
 
   useEffect(() => {
-    getPost(parseInt(id, 10));
-    getComments(parseInt(id, 10));
+    getPost(parseInt(id || '0', 10));
+    getComments(parseInt(id || '0', 10));
   }, []);
 
   useEffect(() => {
