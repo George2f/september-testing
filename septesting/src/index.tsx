@@ -4,6 +4,8 @@ import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './services/reportWebVitals';
 import App from './App';
+import { GreetProvider } from './contexts/greetContext';
+import greeting from './consts/greeting';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -11,7 +13,9 @@ const root = createRoot(container!);
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <GreetProvider greeting={greeting.GREETING}>
+        <App />
+      </GreetProvider>
     </BrowserRouter>
   </StrictMode>,
 );
