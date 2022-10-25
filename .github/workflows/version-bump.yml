@@ -20,3 +20,4 @@ jobs:
         MAJOR_STRING_TOKEN: BREAKING
         MINOR_STRING_TOKEN: feat
         PATCH_STRING_TOKEN: "*"
+        INITIAL_VERSION: 1.1.0
