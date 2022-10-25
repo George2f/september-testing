@@ -16,6 +16,10 @@
 
   Holds all consts used across all screens.
 
+### contexts
+
+  Holds contexts used across the app.
+
 ### hoc
 
   Holds higher order components used across all screens.

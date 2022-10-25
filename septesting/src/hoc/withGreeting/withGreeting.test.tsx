@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import withGreeting from '.';
-import greetingConsts from '../../consts/greeting';
+import withGreeting from './withGreeting';
 import IGreetingProps from '../../types/IGreetingProps';
+import { GreetProvider } from '../../contexts/greetContext';
 
 interface MockProps extends IGreetingProps {
   mock?: string,
@@ -21,7 +21,11 @@ test('Checks if component logs rendering', () => {
   );
   MockedComponent.defaultProps = defaultProps;
   const WithGreeting = withGreeting(MockedComponent);
-  const { queryByText } = render(<WithGreeting />);
+  const { getByText } = render(
+    <GreetProvider greeting="Test greeting">
+      <WithGreeting />
+    </GreetProvider>,
+  );
 
-  expect(queryByText(greetingConsts.GREETING)).toBeTruthy();
+  expect(getByText('Test greeting')).toBeTruthy();
 });
