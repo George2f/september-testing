@@ -1,4 +1,4 @@
-import { endpoints } from '../consts';
+import endpoints from '../consts/endpoints';
 
 const resolveHeaders = () => ({
   Accept: 'application/json',

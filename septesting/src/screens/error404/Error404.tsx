@@ -4,12 +4,10 @@ import Header from '../../components/header';
 import Link from '../../components/link';
 import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 
-interface IError404Props extends GreetingProps {
+interface IError404Props extends IGreetingProps {
   componentName?: string
 }
 

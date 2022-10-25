@@ -1,4 +1,4 @@
-import { greet } from './greeting';
+import greet from './greet';
 
 test('renders learn react link', () => {
   console.log = jest.fn();

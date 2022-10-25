@@ -1,4 +1,4 @@
-import { endpoints } from '../consts';
+import endpoints from '../consts/endpoints';
 
 const singlePostEndpoint = (id : number) : string => `${endpoints.POSTS_ENDPOINT}/${id}`;
 

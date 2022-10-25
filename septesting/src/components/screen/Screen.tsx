@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import withGreeting from '../../hoc/withGreeting';
-import { greet, GreetingProps } from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 import Head from '../head';
 import styles from './Styles.module.scss';
 
-interface IScreenProps extends GreetingProps {
+interface IScreenProps extends IGreetingProps {
   componentName?: string,
   children?: React.ReactNode,
   title?:string,

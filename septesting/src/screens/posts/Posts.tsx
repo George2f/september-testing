@@ -6,9 +6,10 @@ import PostItem from '../../components/postItem';
 import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
 import usePosts from '../../hooks/usePosts';
-import { greet, GreetingProps } from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 
-interface IPostsProps extends GreetingProps {
+interface IPostsProps extends IGreetingProps {
   componentName?: string
 }
 

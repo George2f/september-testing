@@ -1,15 +1,13 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 import Link from '../link';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
 import styles from './Styles.module.scss';
 import withGreeting from '../../hoc/withGreeting';
 import IPost from '../../types/IPost';
+import IGreetingProps from '../../types/IGreetingProps';
+import greet from '../../services/greet';
 
-interface IPostItemProps extends GreetingProps {
+interface IPostItemProps extends IGreetingProps {
   componentName?: string,
   post: IPost,
   link?: string

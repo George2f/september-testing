@@ -13,13 +13,11 @@ import withGreeting from '../../hoc/withGreeting';
 import useComments from '../../hooks/useComments';
 import usePost from '../../hooks/usePost';
 import useUser from '../../hooks/useUser';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
 
-interface IPostProps extends GreetingProps {
+interface IPostProps extends IGreetingProps {
   componentName?: string,
 }
 

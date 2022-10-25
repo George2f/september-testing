@@ -5,12 +5,13 @@ import {
   Routes,
 } from 'react-router-dom';
 import withGreeting from './hoc/withGreeting';
-import logging, { GreetingProps } from './services/greeting';
+import greet from './services/greet';
+import IGreetingProps from './types/IGreetingProps';
 
 const Error404 = lazy(() => import('./screens/error404'));
 const Post = lazy(() => import('./screens/post'));
 const Posts = lazy(() => import('./screens/posts'));
-interface AppProps extends GreetingProps {
+interface AppProps extends IGreetingProps {
   componentName?: string,
 }
 
@@ -19,7 +20,7 @@ const defaultProps = {
 };
 
 const App : FC<AppProps> = ({ componentName, greeting }) => {
-  logging.greet(greeting, componentName);
+  greet(greeting, componentName);
   return (
     <div id="main-container">
       <Routes>

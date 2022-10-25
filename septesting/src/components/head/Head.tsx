@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import withGreeting from '../../hoc/withGreeting';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 
-interface IHeadProps extends GreetingProps {
+interface IHeadProps extends IGreetingProps {
   componentName?:string,
   title?: string
 }

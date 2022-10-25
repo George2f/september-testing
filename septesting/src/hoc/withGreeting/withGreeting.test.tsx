@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import withGreeting from '.';
-import { GreetingProps } from '../../services/greeting';
-import { greeting as greetingConsts } from '../../consts';
+import greetingConsts from '../../consts/greeting';
+import IGreetingProps from '../../types/IGreetingProps';
 
-interface MockProps extends GreetingProps {
+interface MockProps extends IGreetingProps {
   mock?: string,
 }
 

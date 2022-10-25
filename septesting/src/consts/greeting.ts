@@ -1,5 +1,5 @@
-const GREETING = 'Hello from';
-
-export default {
-  GREETING,
+const greeting = {
+  GREETING: 'Hello from',
 };
+
+export default greeting;

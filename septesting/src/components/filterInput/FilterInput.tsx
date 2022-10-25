@@ -1,13 +1,11 @@
 import { FC } from 'react';
 import FilterButton from '../filterButton';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
 import styles from './Styles.module.scss';
 import withGreeting from '../../hoc/withGreeting';
+import IGreetingProps from '../../types/IGreetingProps';
+import greet from '../../services/greet';
 
-interface IFilterInputProps extends GreetingProps {
+interface IFilterInputProps extends IGreetingProps {
   componentName?: string,
   query: string,
   onQueryChange: (query: string) => void,

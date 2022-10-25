@@ -1,14 +1,12 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import withGreeting from '../../hoc/withGreeting';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
+import greet from '../../services/greet';
 import IComment from '../../types/IComment';
+import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
 
-interface ICommentItemProps extends GreetingProps {
+interface ICommentItemProps extends IGreetingProps {
   componentName?: string,
   comment: IComment,
 }

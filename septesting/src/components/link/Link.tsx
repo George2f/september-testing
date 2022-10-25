@@ -2,13 +2,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { FC } from 'react';
 import styles from './Styles.module.scss';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
 import withGreeting from '../../hoc/withGreeting';
+import IGreetingProps from '../../types/IGreetingProps';
+import greet from '../../services/greet';
 
-interface ILinkProps extends GreetingProps{
+interface ILinkProps extends IGreetingProps {
   className?: string|undefined,
   to: string,
   children?: React.ReactNode,

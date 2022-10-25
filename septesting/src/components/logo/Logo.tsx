@@ -4,13 +4,11 @@ import {
   useState,
 } from 'react';
 import withGreeting from '../../hoc/withGreeting';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
 
-interface ILogoProps extends GreetingProps {
+interface ILogoProps extends IGreetingProps {
   componentName?: string,
 }
 

@@ -1,13 +1,11 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import withGreeting from '../../hoc/withGreeting';
-import {
-  greet,
-  GreetingProps,
-} from '../../services/greeting';
+import greet from '../../services/greet';
+import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
 
-interface IBodyProps extends GreetingProps {
+interface IBodyProps extends IGreetingProps {
   componentName?: string,
   children?: React.ReactNode,
   title?: string,
