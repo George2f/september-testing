@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import Body from '../../components/Body';
-import Header from '../../components/Header';
-import Link from '../../components/Link';
-import Screen from '../../components/Screen';
+import Body from '../../components/body';
+import Header from '../../components/header';
+import Link from '../../components/link';
+import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
 import {
   greet,

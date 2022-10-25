@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
-import Body from '../../components/Body';
-import FilterInput from '../../components/FilterInput';
-import Header from '../../components/Header';
-import PostComponent from '../../components/PostComponent';
-import Screen from '../../components/Screen';
+import Body from '../../components/body';
+import FilterInput from '../../components/filterInput';
+import Header from '../../components/header';
+import PostItem from '../../components/postItem';
+import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
 import usePosts from '../../hooks/usePosts';
 import { greet, GreetingProps } from '../../services/greeting';
@@ -61,7 +61,7 @@ const Posts : FC<IPostsProps> = ({ componentName = 'Posts', greeting }) => {
       <Body title="Posts">
         {loading && <div>Loading...</div>}
         {posts.map((post) => (
-          <PostComponent
+          <PostItem
             post={post}
             key={post.id.toString()}
             link={`/posts/${post.id}`}

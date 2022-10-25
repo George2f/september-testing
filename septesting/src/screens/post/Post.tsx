@@ -3,12 +3,12 @@ import {
   useEffect,
 } from 'react';
 import { useParams } from 'react-router-dom';
-import Body from '../../components/Body';
-import CommentComponent from '../../components/CommentComponent';
-import Header from '../../components/Header';
-import Link from '../../components/Link';
-import PostComponent from '../../components/PostComponent';
-import Screen from '../../components/Screen';
+import Body from '../../components/body';
+import CommentItem from '../../components/commentItem';
+import Header from '../../components/header';
+import Link from '../../components/link';
+import PostItem from '../../components/postItem';
+import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
 import useComments from '../../hooks/useComments';
 import usePost from '../../hooks/usePost';
@@ -52,9 +52,9 @@ const Post : FC<IPostProps> = ({ componentName = 'Post', greeting }) => {
           </Link>
         </p>
         {post
-          ? <PostComponent post={{ ...post, user }} /> : null}
+          ? <PostItem post={{ ...post, user }} /> : null}
         {comments.map((comment) => (
-          <CommentComponent comment={comment} key={comment.id.toString()} />
+          <CommentItem comment={comment} key={comment.id.toString()} />
         ))}
       </Body>
     </Screen>
