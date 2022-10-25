@@ -1,36 +1,61 @@
-import { FC, ReactNode } from 'react';
+import { FC, lazy, Suspense } from 'react';
 import {
   Navigate,
   Route,
   Routes,
 } from 'react-router-dom';
 import withGreeting from './hoc/withGreeting';
-import Error404 from './screens/error404';
-import Post from './screens/post';
-import Posts from './screens/posts';
 import logging, { GreetingProps } from './services/greeting';
 
+const Error404 = lazy(() => import('./screens/error404'));
+const Post = lazy(() => import('./screens/post'));
+const Posts = lazy(() => import('./screens/posts'));
 interface AppProps extends GreetingProps {
   componentName?: string,
-  router: ({ children }: {children: ReactNode}) => JSX.Element
 }
 
 const defaultProps = {
   componentName: 'App',
 };
 
-const App : FC<AppProps> = ({ componentName, greeting, router: Router }) => {
+const App : FC<AppProps> = ({ componentName, greeting }) => {
   logging.greet(greeting, componentName);
   return (
     <div id="main-container">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navigate to="posts" />} />
-          <Route path="posts" element={<Posts />} />
-          <Route path="posts/:id" element={<Post />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route
+          path="/"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Navigate to="posts" />
+            </Suspense>
+          )}
+        />
+        <Route
+          path="posts"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Posts />
+            </Suspense>
+          )}
+        />
+        <Route
+          path="posts/:id"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Post />
+            </Suspense>
+          )}
+        />
+        <Route
+          path="*"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Error404 />
+            </Suspense>
+          )}
+        />
+      </Routes>
     </div>
   );
 };
