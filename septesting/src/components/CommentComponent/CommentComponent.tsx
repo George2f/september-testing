@@ -5,12 +5,12 @@ import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
-import { Comment } from '../../types';
+import IComment from '../../types/IComment';
 import styles from './Styles.module.scss';
 
 interface CommentComponentProps extends GreetingProps {
   componentName?: string,
-  comment: Comment,
+  comment: IComment,
 }
 
 const defaultProps = {

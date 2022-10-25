@@ -2,10 +2,11 @@ import { useState } from 'react';
 import endpoints from '../services/endpoints';
 import { endpoints as endpointConsts } from '../consts';
 import networking from '../services/networking';
-import { Post, User } from '../types';
 import { useUsers } from './users';
+import IPost from '../types/IPost';
+import IUser from '../types/IUser';
 
-const filterPosts = (filter = '', nonFiltered: Post[] = []) : Post[] => {
+const filterPosts = (filter = '', nonFiltered: IPost[] = []) : IPost[] => {
   if (filter.length === 0) {
     return nonFiltered;
   }
@@ -17,12 +18,12 @@ const filterPosts = (filter = '', nonFiltered: Post[] = []) : Post[] => {
 };
 
 const fetchPosts = async (
-  getUsers: () => Promise<User[]>,
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>,
-  setFilteredPosts : React.Dispatch<React.SetStateAction<Post[]>>,
+  getUsers: () => Promise<IUser[]>,
+  setPosts: React.Dispatch<React.SetStateAction<IPost[]>>,
+  setFilteredPosts : React.Dispatch<React.SetStateAction<IPost[]>>,
 ) => {
   return networking.getRequest(endpointConsts.POSTS_ENDPOINT)
-    .then((responsePosts : Post[]) => {
+    .then((responsePosts : IPost[]) => {
       getUsers().then((responseUsers) => {
         const enhancedPosts = responsePosts.map((post) => {
         // eslint-disable-next-line no-param-reassign
@@ -36,10 +37,10 @@ const fetchPosts = async (
     .catch((error) => console.log('Get Posts error:', error));
 };
 
-const usePosts = () : [Post[], (filter?: string, callback?: () =>void) => void] => {
-  const [posts, setPosts] = useState<Post[]>([]);
+const usePosts = () : [IPost[], (filter?: string, callback?: () =>void) => void] => {
+  const [posts, setPosts] = useState<IPost[]>([]);
   const [getUsers] = useUsers();
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<IPost[]>([]);
 
   const getPosts = (filter = '', callback: () =>void = () => null) => {
     if (posts.length > 0) {
@@ -53,8 +54,8 @@ const usePosts = () : [Post[], (filter?: string, callback?: () =>void) => void] 
   return [filteredPosts, getPosts];
 };
 
-const usePost = (): [Post|undefined, (postId: number) => void] => {
-  const [post, setPost] = useState<Post>();
+const usePost = (): [IPost|undefined, (postId: number) => void] => {
+  const [post, setPost] = useState<IPost>();
 
   const getPost = (postId : number) => {
     networking.getRequest(endpoints.singlePostEndpoint(postId))

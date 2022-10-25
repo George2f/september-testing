@@ -2,12 +2,12 @@ import { useState } from 'react';
 import endpoints from '../services/endpoints';
 import networking from '../services/networking';
 import consts from '../consts';
-import { User } from '../types';
+import IUser from '../types/IUser';
 
-const useUsers = () : [ () => Promise<User[]>, User[]] => {
-  const [users, setUsers] = useState<User[]>([]);
+const useUsers = () : [ () => Promise<IUser[]>, IUser[]] => {
+  const [users, setUsers] = useState<IUser[]>([]);
 
-  const getUsers = async () : Promise<User[]> => {
+  const getUsers = async () : Promise<IUser[]> => {
     return networking.getRequest(consts.endpoints.USERS_ENDPOINT)
       .then((response) => {
         setUsers(response);
@@ -19,8 +19,8 @@ const useUsers = () : [ () => Promise<User[]>, User[]] => {
   return [getUsers, users];
 };
 
-const useUser = () : [User|undefined, (id : number) => void] => {
-  const [user, setUser] = useState<User>();
+const useUser = () : [IUser|undefined, (id : number) => void] => {
+  const [user, setUser] = useState<IUser>();
 
   const getUser = (id : number) => {
     networking.getRequest(endpoints.singleUserEndpoint(id))

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import endpoints from '../services/endpoints';
 import networking from '../services/networking';
-import { Comment } from '../types';
+import IComment from '../types/IComment';
 
-const useComments = () : [Comment[], (postId : number) => void] => {
-  const [comments, setComments] = useState<Comment[]>([]);
+const useComments = () : [IComment[], (postId : number) => void] => {
+  const [comments, setComments] = useState<IComment[]>([]);
 
   const getComments = (postId: number) => {
     networking.getRequest(endpoints.postCommentsEndpoint(postId))
