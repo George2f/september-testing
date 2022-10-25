@@ -5,11 +5,9 @@ import {
   Routes,
 } from 'react-router-dom';
 import withGreeting from './hoc/withGreeting';
-import {
-  Error404Screen,
-  PostScreen,
-  PostsScreen,
-} from './screens';
+import Error404 from './screens/error404';
+import Post from './screens/post';
+import Posts from './screens/posts';
 import logging, { GreetingProps } from './services/greeting';
 
 interface AppProps extends GreetingProps {
@@ -28,9 +26,9 @@ const App : FC<AppProps> = ({ componentName, greeting, router: Router }) => {
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="posts" />} />
-          <Route path="posts" element={<PostsScreen />} />
-          <Route path="posts/:id" element={<PostScreen />} />
-          <Route path="*" element={<Error404Screen />} />
+          <Route path="posts" element={<Posts />} />
+          <Route path="posts/:id" element={<Post />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
     </div>

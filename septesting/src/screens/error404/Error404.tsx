@@ -9,15 +9,14 @@ import {
   GreetingProps,
 } from '../../services/greeting';
 
-interface Error404ScreenProps extends GreetingProps {
+interface IError404Props extends GreetingProps {
   componentName?: string
 }
 
-const defaultProps = {
-  componentName: 'Error404Screen',
-};
-
-const Error404Screen : FC<Error404ScreenProps> = ({ componentName, greeting }) => {
+const Error404 : FC<IError404Props> = ({
+  componentName = 'Error404',
+  greeting,
+}) => {
   greet(greeting, componentName);
   return (
     <Screen title="Page not found | Septesting">
@@ -31,6 +30,4 @@ const Error404Screen : FC<Error404ScreenProps> = ({ componentName, greeting }) =
   );
 };
 
-Error404Screen.defaultProps = defaultProps;
-
-export default withGreeting(Error404Screen);
+export default withGreeting(Error404);

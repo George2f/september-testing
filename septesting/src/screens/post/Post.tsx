@@ -17,15 +17,11 @@ import {
 } from '../../services/greeting';
 import styles from './Styles.module.scss';
 
-interface PostScreenProps extends GreetingProps {
+interface IPostProps extends GreetingProps {
   componentName?: string,
 }
 
-const defaultProps = {
-  componentName: 'PostScreen',
-};
-
-const PostScreen : FC<PostScreenProps> = ({ componentName, greeting }) => {
+const Post : FC<IPostProps> = ({ componentName = 'Post', greeting }) => {
   greet(greeting, componentName);
   const { id } = useParams<{id:string}>();
 
@@ -63,6 +59,4 @@ const PostScreen : FC<PostScreenProps> = ({ componentName, greeting }) => {
   );
 };
 
-PostScreen.defaultProps = defaultProps;
-
-export default withGreeting(PostScreen);
+export default withGreeting(Post);

@@ -8,17 +8,13 @@ import withGreeting from '../../hoc/withGreeting';
 import hooks from '../../hooks';
 import { greet, GreetingProps } from '../../services/greeting';
 
-interface PostsScreenProps extends GreetingProps {
+interface IPostsProps extends GreetingProps {
   componentName?: string
 }
 
-const defaultProps = {
-  componentName: 'PostsScreen',
-};
-
 let filterDelayTimer : NodeJS.Timeout;
 
-const PostsScreen : FC<PostsScreenProps> = ({ componentName, greeting }) => {
+const Posts : FC<IPostsProps> = ({ componentName = 'Posts', greeting }) => {
   greet(greeting, componentName);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -77,6 +73,4 @@ const PostsScreen : FC<PostsScreenProps> = ({ componentName, greeting }) => {
   );
 };
 
-PostsScreen.defaultProps = defaultProps;
-
-export default withGreeting(PostsScreen);
+export default withGreeting(Posts);
