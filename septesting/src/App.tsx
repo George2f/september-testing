@@ -1,38 +1,62 @@
-import { FC, ReactNode } from 'react';
+import { FC, lazy, Suspense } from 'react';
 import {
   Navigate,
   Route,
   Routes,
 } from 'react-router-dom';
 import withGreeting from './hoc/withGreeting';
-import {
-  Error404Screen,
-  PostScreen,
-  PostsScreen,
-} from './screens';
-import logging, { GreetingProps } from './services/greeting';
+import greet from './services/greet';
+import IGreetingProps from './types/IGreetingProps';
 
-interface AppProps extends GreetingProps {
+const Error404 = lazy(() => import('./screens/error404'));
+const Post = lazy(() => import('./screens/post'));
+const Posts = lazy(() => import('./screens/posts'));
+interface AppProps extends IGreetingProps {
   componentName?: string,
-  router: ({ children }: {children: ReactNode}) => JSX.Element
 }
 
 const defaultProps = {
   componentName: 'App',
 };
 
-const App : FC<AppProps> = ({ componentName, greeting, router: Router }) => {
-  logging.greet(greeting, componentName);
+const App : FC<AppProps> = ({ componentName, greeting }) => {
+  greet(greeting, componentName);
   return (
     <div id="main-container">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navigate to="posts" />} />
-          <Route path="posts" element={<PostsScreen />} />
-          <Route path="posts/:id" element={<PostScreen />} />
-          <Route path="*" element={<Error404Screen />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route
+          path="/"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Navigate to="posts" />
+            </Suspense>
+          )}
+        />
+        <Route
+          path="posts"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Posts />
+            </Suspense>
+          )}
+        />
+        <Route
+          path="posts/:id"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Post />
+            </Suspense>
+          )}
+        />
+        <Route
+          path="*"
+          element={(
+            <Suspense fallback={<p>Loading...</p>}>
+              <Error404 />
+            </Suspense>
+          )}
+        />
+      </Routes>
     </div>
   );
 };

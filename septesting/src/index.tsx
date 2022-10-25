@@ -10,7 +10,9 @@ const container = document.getElementById('app');
 const root = createRoot(container!);
 root.render(
   <StrictMode>
-    <App router={BrowserRouter} />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 );
 

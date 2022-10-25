@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import { GreetingProps } from '../../services/greeting';
-import { greeting as greetingConsts } from '../../consts';
+import greeting from '../../consts/greeting';
+import IGreetingProps from '../../types/IGreetingProps';
 
-function withGreeting<P extends GreetingProps>(Component: React.ComponentType<P>)
+function withGreeting<P extends IGreetingProps>(Component: React.ComponentType<P>)
 : FC<P> {
   const ComponentWithGreeting = (props: P) => (
     <Component
     // eslint-disable-next-line react/jsx-props-no-spreading
       {...props as P}
-      greeting={greetingConsts.GREETING}
+      greeting={greeting.GREETING}
     />
   );
 

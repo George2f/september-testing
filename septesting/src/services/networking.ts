@@ -1,4 +1,4 @@
-import { endpoints } from '../consts';
+import endpoints from '../consts/endpoints';
 
 const resolveHeaders = () => ({
   Accept: 'application/json',
@@ -9,6 +9,7 @@ const resolveHeaders = () => ({
 export const getRequest = (
   endpoint = '/',
   url = endpoints.BASE_URL,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 ) : Promise<any> => fetch(url + endpoint, {
   method: 'GET',
   headers: resolveHeaders(),
