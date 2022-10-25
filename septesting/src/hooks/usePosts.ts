@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import endpoints from '../services/endpoints';
-import { endpoints as endpointConsts } from '../consts';
+import endpoints from '../consts/endpoints';
 import networking from '../services/networking';
-import { useUsers } from './users';
+import useUsers from './useUsers';
 import IPost from '../types/IPost';
 import IUser from '../types/IUser';
 
@@ -22,7 +21,7 @@ const fetchPosts = async (
   setPosts: React.Dispatch<React.SetStateAction<IPost[]>>,
   setFilteredPosts : React.Dispatch<React.SetStateAction<IPost[]>>,
 ) => {
-  return networking.getRequest(endpointConsts.POSTS_ENDPOINT)
+  return networking.getRequest(endpoints.POSTS_ENDPOINT)
     .then((responsePosts : IPost[]) => {
       getUsers().then((responseUsers) => {
         const enhancedPosts = responsePosts.map((post) => {
@@ -54,21 +53,4 @@ const usePosts = () : [IPost[], (filter?: string, callback?: () =>void) => void]
   return [filteredPosts, getPosts];
 };
 
-const usePost = (): [IPost|undefined, (postId: number) => void] => {
-  const [post, setPost] = useState<IPost>();
-
-  const getPost = (postId : number) => {
-    networking.getRequest(endpoints.singlePostEndpoint(postId))
-      .then((response) => {
-        setPost(response);
-      })
-      .catch((error) => console.log('Get single post error: ', error));
-  };
-
-  return [post, getPost];
-};
-
-export default {
-  usePosts,
-  usePost,
-};
+export default usePosts;

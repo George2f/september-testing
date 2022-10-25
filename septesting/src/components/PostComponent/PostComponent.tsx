@@ -5,13 +5,13 @@ import {
   greet,
   GreetingProps,
 } from '../../services/greeting';
-import { Post } from '../../types';
 import styles from './Styles.module.scss';
 import withGreeting from '../../hoc/withGreeting';
+import IPost from '../../types/IPost';
 
 interface PostComponentProps extends GreetingProps {
   componentName?: string,
-  post: Post,
+  post: IPost,
   link?: string
 }
 

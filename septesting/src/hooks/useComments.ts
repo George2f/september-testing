@@ -15,6 +15,4 @@ const useComments = () : [IComment[], (postId : number) => void] => {
   return [comments, getComments];
 };
 
-export default {
-  useComments,
-};
+export default useComments;

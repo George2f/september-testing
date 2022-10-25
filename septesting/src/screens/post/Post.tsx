@@ -10,7 +10,9 @@ import Link from '../../components/Link';
 import PostComponent from '../../components/PostComponent';
 import Screen from '../../components/Screen';
 import withGreeting from '../../hoc/withGreeting';
-import hooks from '../../hooks';
+import useComments from '../../hooks/useComments';
+import usePost from '../../hooks/usePost';
+import useUser from '../../hooks/useUser';
 import {
   greet,
   GreetingProps,
@@ -25,9 +27,9 @@ const Post : FC<IPostProps> = ({ componentName = 'Post', greeting }) => {
   greet(greeting, componentName);
   const { id } = useParams<{id:string}>();
 
-  const [post, getPost] = hooks.posts.usePost();
-  const [comments, getComments] = hooks.comments.useComments();
-  const [user, getUser] = hooks.users.useUser();
+  const [post, getPost] = usePost();
+  const [comments, getComments] = useComments();
+  const [user, getUser] = useUser();
 
   useEffect(() => {
     getPost(parseInt(id || '0', 10));

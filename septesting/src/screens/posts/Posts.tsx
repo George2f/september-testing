@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import PostComponent from '../../components/PostComponent';
 import Screen from '../../components/Screen';
 import withGreeting from '../../hoc/withGreeting';
-import hooks from '../../hooks';
+import usePosts from '../../hooks/usePosts';
 import { greet, GreetingProps } from '../../services/greeting';
 
 interface IPostsProps extends GreetingProps {
@@ -23,7 +23,7 @@ const Posts : FC<IPostsProps> = ({ componentName = 'Posts', greeting }) => {
   const [query, setQuery] = useState(urlQuery || '');
   const [loading, setLoading] = useState(false);
 
-  const [posts, getPosts] = hooks.posts.usePosts();
+  const [posts, getPosts] = usePosts();
 
   const loadPosts = (filter: string) => {
     if (loading) return;
