@@ -1,5 +1,5 @@
-const greet = (message = 'No greeting,', component = 'No name') : void => {
-  console.log(`${message} ${component}`);
+const greet = (greeting = 'No greeting,', name = 'No name') : void => {
+  console.log(`${greeting} ${name}`);
 };
 
 export default greet;

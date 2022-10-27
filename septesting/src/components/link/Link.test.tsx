@@ -4,12 +4,12 @@ import Component from './Link';
 
 describe('Link', () => {
   it('Checks if component logs rendering', () => {
-    console.log = jest.fn();
+    const mock = jest.fn();
     render(
       <BrowserRouter>
-        <Component to="" />
+        <Component to="" greet={mock} componentName="Test" />
       </BrowserRouter>,
     );
-    expect(console.log).toBeCalled();
+    expect(mock).toBeCalledWith('Test');
   });
 });

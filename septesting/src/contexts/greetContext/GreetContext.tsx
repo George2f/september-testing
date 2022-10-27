@@ -1,13 +1,14 @@
 import {
   createContext,
   FC,
+  PropsWithChildren,
   ReactNode,
   useContext,
   useMemo,
 } from 'react';
 
 interface IGreetingContext {
-  greeting: string;
+  greet: (name: string) => void;
 }
 
 const GreetContext = createContext<IGreetingContext | null>(null);
@@ -15,12 +16,17 @@ const GreetContext = createContext<IGreetingContext | null>(null);
 interface IGreetProviderProps {
   greeting: string;
   children: ReactNode;
+  callback: (greeting: string, name: string) => void;
 }
 
-const GreetProvider: FC<IGreetProviderProps> = ({ children, greeting }) => {
+const GreetProvider: FC<PropsWithChildren<IGreetProviderProps>> = ({
+  children,
+  greeting,
+  callback,
+}) => {
   const value = useMemo(
-    () => ({ greeting }),
-    [greeting],
+    () => ({ greet: (name: string) => callback(greeting, name) }),
+    [greeting, callback],
   );
 
   return (
@@ -31,9 +37,8 @@ const GreetProvider: FC<IGreetProviderProps> = ({ children, greeting }) => {
 };
 
 const useGreeting = () => {
-  const { greeting } = useContext(GreetContext) || {};
-
-  return greeting;
+  const { greet } = useContext(GreetContext) || {};
+  return greet;
 };
 
 export {

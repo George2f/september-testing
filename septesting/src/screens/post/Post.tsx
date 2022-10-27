@@ -13,16 +13,14 @@ import withGreeting from '../../hoc/withGreeting';
 import useComments from '../../hooks/useComments';
 import usePost from '../../hooks/usePost';
 import useUser from '../../hooks/useUser';
-import greet from '../../services/greet';
 import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
 
-interface IPostProps extends IGreetingProps {
-  componentName?: string,
-}
-
-const Post : FC<IPostProps> = ({ componentName = 'Post', greeting }) => {
-  greet(greeting, componentName);
+const Post : FC<IGreetingProps> = ({
+  componentName = 'Post',
+  greet,
+}) => {
+  greet?.(componentName);
   const { id } = useParams<{id:string}>();
 
   const [post, getPost] = usePost();

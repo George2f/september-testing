@@ -4,18 +4,13 @@ import Header from '../../components/header';
 import Link from '../../components/link';
 import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
-import greet from '../../services/greet';
 import IGreetingProps from '../../types/IGreetingProps';
 
-interface IError404Props extends IGreetingProps {
-  componentName?: string
-}
-
-const Error404 : FC<IError404Props> = ({
+const Error404 : FC<IGreetingProps> = ({
   componentName = 'Error404',
-  greeting,
+  greet,
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
   return (
     <Screen title="Page not found | Septesting">
       <Header />

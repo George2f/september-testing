@@ -3,7 +3,6 @@ import FilterButton from '../filterButton';
 import styles from './Styles.module.scss';
 import withGreeting from '../../hoc/withGreeting';
 import IGreetingProps from '../../types/IGreetingProps';
-import greet from '../../services/greet';
 
 interface IFilterInputProps extends IGreetingProps {
   componentName?: string,
@@ -16,10 +15,10 @@ const FilterInput : FC<IFilterInputProps> = ({
   query,
   onQueryChange,
   onSubmit,
-  greeting,
+  greet,
   componentName = 'FilterInput',
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();

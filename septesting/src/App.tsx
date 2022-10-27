@@ -5,7 +5,6 @@ import {
   Routes,
 } from 'react-router-dom';
 import withGreeting from './hoc/withGreeting';
-import greet from './services/greet';
 import IGreetingProps from './types/IGreetingProps';
 
 const Error404 = lazy(() => import('./screens/error404'));
@@ -19,8 +18,8 @@ const defaultProps = {
   componentName: 'App',
 };
 
-const App : FC<AppProps> = ({ componentName, greeting }) => {
-  greet(greeting, componentName);
+const App : FC<AppProps> = ({ componentName, greet }) => {
+  greet?.(componentName);
   return (
     <div id="main-container">
       <Routes>

@@ -1,5 +1,6 @@
 interface IGreetingProps {
-  greeting?: string
+  componentName?: string;
+  greet?: (name?: string) => void;
 }
 
 export default IGreetingProps;
