@@ -1,26 +1,23 @@
 import { Link as RouterLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import styles from './Styles.module.scss';
 import withGreeting from '../../hoc/withGreeting';
 import IGreetingProps from '../../types/IGreetingProps';
-import greet from '../../services/greet';
 
 interface ILinkProps extends IGreetingProps {
   className?: string|undefined,
   to: string,
-  children?: React.ReactNode,
-  componentName?: string
 }
 
-const Link : FC<ILinkProps> = ({
+const Link : FC<PropsWithChildren<ILinkProps>> = ({
   className,
   to,
   children,
   componentName = 'Link',
-  greeting,
+  greet,
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
 
   return (
     <RouterLink

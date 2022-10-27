@@ -4,12 +4,12 @@ import Component from './Posts';
 
 describe('Posts', () => {
   it('Checks if component logs rendering', () => {
-    console.log = jest.fn();
+    const mock = jest.fn();
     render(
       <MemoryRouter>
-        <Component />
+        <Component greet={mock} componentName="Test" />
       </MemoryRouter>,
     );
-    expect(console.log).toBeCalled();
+    expect(mock).toBeCalledWith('Test');
   });
 });

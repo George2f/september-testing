@@ -6,17 +6,15 @@ import PostItem from '../../components/postItem';
 import Screen from '../../components/screen';
 import withGreeting from '../../hoc/withGreeting';
 import usePosts from '../../hooks/usePosts';
-import greet from '../../services/greet';
 import IGreetingProps from '../../types/IGreetingProps';
-
-interface IPostsProps extends IGreetingProps {
-  componentName?: string
-}
 
 let filterDelayTimer : NodeJS.Timeout;
 
-const Posts : FC<IPostsProps> = ({ componentName = 'Posts', greeting }) => {
-  greet(greeting, componentName);
+const Posts : FC<IGreetingProps> = ({
+  componentName = 'Posts',
+  greet,
+}) => {
+  greet?.(componentName);
 
   const urlParams = new URLSearchParams(window.location.search);
   const urlQuery = urlParams.get('q');

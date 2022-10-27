@@ -1,25 +1,22 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import withGreeting from '../../hoc/withGreeting';
-import greet from '../../services/greet';
 import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
 
 interface IBodyProps extends IGreetingProps {
-  componentName?: string,
-  children?: React.ReactNode,
   title?: string,
   className?:string,
 }
 
-const Body : FC<IBodyProps> = ({
+const Body : FC<PropsWithChildren<IBodyProps>> = ({
   className = 'Body',
-  componentName = undefined,
-  children = undefined,
-  title = undefined,
-  greeting = undefined,
+  componentName,
+  children,
+  title,
+  greet,
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
 
   return (
     <div className={classNames(styles.container, className)}>

@@ -6,6 +6,7 @@ import reportWebVitals from './services/reportWebVitals';
 import App from './App';
 import { GreetProvider } from './contexts/greetContext';
 import greeting from './consts/greeting';
+import greet from './services/greet';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -13,7 +14,7 @@ const root = createRoot(container!);
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <GreetProvider greeting={greeting.GREETING}>
+      <GreetProvider greeting={greeting.GREETING} callback={greet}>
         <App />
       </GreetProvider>
     </BrowserRouter>

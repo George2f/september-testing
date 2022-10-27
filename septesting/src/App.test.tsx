@@ -4,14 +4,14 @@ import App from './App';
 
 describe('App', () => {
   it('renders learn react link', async () => {
-    console.log = jest.fn();
+    const mock = jest.fn();
     act(() => {
       render(
         <MemoryRouter>
-          <App greeting="Test greeting" />
+          <App greet={mock} componentName="Test" />
         </MemoryRouter>,
       );
     });
-    expect(console.log).toBeCalled();
+    expect(mock).toBeCalledWith('Test');
   });
 });

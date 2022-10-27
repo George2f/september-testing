@@ -4,13 +4,8 @@ import {
   useState,
 } from 'react';
 import withGreeting from '../../hoc/withGreeting';
-import greet from '../../services/greet';
 import IGreetingProps from '../../types/IGreetingProps';
 import styles from './Styles.module.scss';
-
-interface ILogoProps extends IGreetingProps {
-  componentName?: string,
-}
 
 const subtitles = [
   'Say do you remember...',
@@ -21,11 +16,11 @@ const subtitles = [
   '21st night of September...',
 ];
 
-const Logo : FC<ILogoProps> = ({
+const Logo : FC<IGreetingProps> = ({
   componentName = 'Logo',
-  greeting,
+  greet,
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
   const [subtitle, setSubtitle] = useState('');
 
   useEffect(() => {

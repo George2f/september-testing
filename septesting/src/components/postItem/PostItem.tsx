@@ -5,10 +5,8 @@ import styles from './Styles.module.scss';
 import withGreeting from '../../hoc/withGreeting';
 import IPost from '../../types/IPost';
 import IGreetingProps from '../../types/IGreetingProps';
-import greet from '../../services/greet';
 
 interface IPostItemProps extends IGreetingProps {
-  componentName?: string,
   post: IPost,
   link?: string
 }
@@ -16,10 +14,10 @@ interface IPostItemProps extends IGreetingProps {
 const PostComponent : FC<IPostItemProps> = ({
   componentName = 'PostItem',
   post,
-  greeting,
+  greet,
   link,
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
 
   const LinkComponent = link ? Link : 'span';
 

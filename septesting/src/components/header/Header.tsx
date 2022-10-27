@@ -1,22 +1,16 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import styles from './Styles.module.scss';
 import Logo from '../logo';
 import withGreeting from '../../hoc/withGreeting';
 import IGreetingProps from '../../types/IGreetingProps';
-import greet from '../../services/greet';
 
-interface IHeaderProps extends IGreetingProps {
-  componentName?: string,
-  children?: React.ReactNode
-}
-
-const Header : FC<IHeaderProps> = ({
+const Header : FC<PropsWithChildren<IGreetingProps>> = ({
   componentName = 'Header',
-  greeting,
+  greet,
   children,
 }) => {
-  greet(greeting, componentName);
+  greet?.(componentName);
 
   return (
     <div className={classNames(styles.container, 'with-shadow')}>
